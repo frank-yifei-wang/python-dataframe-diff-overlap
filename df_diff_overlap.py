@@ -1,7 +1,5 @@
-#%%
 import pandas as pd
 
-##%%
 def df_diff(df_A: pd.DataFrame, df_B: pd.DataFrame, on_A: str = "", on_B: str = "") -> pd.DataFrame:
     """
     Function: Compare DataFrame "A" and "B" to find rows only in "A" but not in "B"
@@ -42,7 +40,6 @@ def df_diff(df_A: pd.DataFrame, df_B: pd.DataFrame, on_A: str = "", on_B: str = 
 
     return df_output
 
-##%%
 def df_overlap(df_A: pd.DataFrame, df_B: pd.DataFrame, on_A: str = "", on_B: str = "") -> pd.DataFrame:
     """
     Function: Compare DataFrame "A" and "B" to find rows in "A" and also in "B"
@@ -84,14 +81,12 @@ def df_overlap(df_A: pd.DataFrame, df_B: pd.DataFrame, on_A: str = "", on_B: str
 
     return df_output
 
-#%%
 df_A_csv = pd.read_csv("A.csv")
 df_B_csv = pd.read_csv("B.csv")
 
 id_col = "id"
-# id_col = ""
+# id_col = ""  # Test id omission
 
-#%%
 df_A_only = df_diff(df_A_csv, df_B_csv, on_A=id_col, on_B=id_col)
 df_A_only["Rownum_In_Original"] = df_A_only.index + 2
 df_A_only.to_csv("A_only.csv", index=False)
@@ -107,5 +102,3 @@ df_A_B_both.to_csv("A_B_both.csv", index=False)
 df_B_A_both = df_overlap(df_B_csv, df_A_csv, on_A=id_col, on_B=id_col)
 df_B_A_both["Rownum_In_Original"] = df_B_A_both.index + 2
 df_B_A_both.to_csv("B_A_both.csv", index=False)
-
-print("Done & saved CSVs")
